@@ -1,28 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Social Media Sharing Functions
+
+  function openCenteredPopup(url, title, w = 600, h = 400) {
+    const left = window.screenX + (window.outerWidth - w) / 2;
+    const top  = window.screenY + (window.outerHeight - h) / 2;
+    const opts = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+    const popup = window.open(url, title, opts);
+    if (!popup) {
+      console.warn("Popup blocked. Allow popups for this site to test sharing.");
+    } else {
+      popup.focus && popup.focus();
+    }
+  }
+
   function shareOnFacebook(event) {
     event && event.preventDefault();
-    // Replace with the actual URL you want to share
-    const urlToShare = 'https://crabbster-roll.github.io/ComfortCreature-Website/';
+    // Replace 'your-website-url' with the URL you want to share if needed
+    const urlToShare = 'https://crabbster-roll.github.io/SocialMediaJavaScript/';
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
     openCenteredPopup(facebookShareUrl, 'Share on Facebook', 600, 480);
   }
 
   function shareOnTwitter(event) {
     event && event.preventDefault();
-    // Replace with the actual URL and text you want to share
-    const urlToShare = 'https://crabbster-roll.github.io/ComfortCreature-Website/';
-    const textToShare = 'Share it on Twitter!';
+    // Replace 'your-website-url' and 'your-text' with your desired URL and text
+    const urlToShare = 'https://crabbster-roll.github.io/SocialMediaJavaScript/';
+    const textToShare = 'Check out this post!';
     const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(urlToShare)}&text=${encodeURIComponent(textToShare)}`;
     openCenteredPopup(twitterShareUrl, 'Share on Twitter', 600, 420);
-  }
-
-  // helper to open a centered popup
-  function openCenteredPopup(url, title, w = 600, h = 400) {
-    const left = window.screenX + (window.outerWidth - w) / 2;
-    const top = window.screenY + (window.outerHeight - h) / 2;
-    const opts = `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`;
-    window.open(url, title, opts);
   }
 
   // Event listeners for social media sharing buttons (defensive checks)
